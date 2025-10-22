@@ -26,6 +26,11 @@ const altMap = {
   a: 'ă'
 };
 
+const altCodeMap = {
+  KeyC: 'ç',
+  KeyA: 'ă'
+};
+
 const physicalKeyMap = {
   'ß': 'ȷ',
   'ẞ': 'ȷ',
@@ -252,8 +257,9 @@ textarea.addEventListener('keydown', (event) => {
     return;
   }
 
-  if (event.altKey && !event.ctrlKey && !event.metaKey) {
-    const replacement = altMap[event.key.toLowerCase()];
+  if (event.altKey && !event.metaKey) {
+    const replacement =
+      altCodeMap[event.code] ?? altMap[event.key.toLowerCase()];
     if (replacement) {
       event.preventDefault();
       const output = event.shiftKey ? replacement.toUpperCase() : replacement;
@@ -262,7 +268,7 @@ textarea.addEventListener('keydown', (event) => {
     return;
   }
 
-  if (event.ctrlKey || event.metaKey || event.altKey) {
+  if (event.ctrlKey || event.metaKey) {
     return;
   }
 
