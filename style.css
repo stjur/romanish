@@ -1,0 +1,146 @@
+:root {
+  color-scheme: light dark;
+  --bg: #f7f7fb;
+  --surface: #ffffff;
+  --border: #d0d4db;
+  --accent: #2d5bff;
+  --text: #1f2532;
+  --shadow: 0 6px 24px rgba(31, 37, 50, 0.12);
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.app {
+  background: var(--surface);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  width: min(960px, 100%);
+  padding: 2rem;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.app__header h1 {
+  margin: 0 0 0.25rem;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.app__header p {
+  margin: 0;
+  color: rgba(31, 37, 50, 0.7);
+}
+
+.app__label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.app__textarea {
+  width: 100%;
+  font: inherit;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  padding: 1rem;
+  resize: vertical;
+  min-height: 180px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.app__textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(45, 91, 255, 0.1);
+}
+
+.keyboard {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.keyboard__row {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(40px, 1fr);
+  gap: 0.5rem;
+}
+
+.key {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #f0f2f8;
+  cursor: pointer;
+  user-select: none;
+  font-weight: 600;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.2s;
+}
+
+.key:hover {
+  background: #e5e9f5;
+}
+
+.key:active {
+  transform: translateY(1px);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.12);
+}
+
+.key--wide {
+  grid-column: span 2;
+}
+
+.key--extra-wide {
+  grid-column: span 4;
+}
+
+.key--spacer {
+  pointer-events: none;
+  background: transparent;
+  border: none;
+}
+
+.key--special {
+  background: #e7ecff;
+  border-color: rgba(45, 91, 255, 0.35);
+}
+
+.app__footer {
+  font-size: 0.95rem;
+  color: rgba(31, 37, 50, 0.75);
+}
+
+.glyph {
+  font-weight: 700;
+}
+
+@media (max-width: 720px) {
+  body {
+    padding: 1rem;
+  }
+
+  .app {
+    padding: 1.25rem;
+  }
+
+  .keyboard__row {
+    grid-auto-columns: minmax(36px, 1fr);
+  }
+
+  .key {
+    padding: 0.6rem 0.4rem;
+  }
+}
