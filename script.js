@@ -30,9 +30,9 @@ const physicalKeyMap = {
   'ß': 'ȷ',
   'ẞ': 'ȷ',
   'ö': 'ʃ',
-  'Ö': 'ʃ',
+  'Ö': 'Ʃ',
   'ä': 'ꙟ',
-  'Ä': 'ꙟ'
+  'Ä': 'Ꙟ'
 };
 
 const keyboardLayout = {
@@ -200,7 +200,7 @@ function applyPalatalHook() {
     const lastIndex = end - 1;
     if (lastIndex >= start) {
       const targetChar = value[lastIndex];
-      const mapped = palatalMap[targetChar];
+      const mapped = getPalatalizedChar(targetChar);
       if (mapped) {
         textarea.value = value.slice(0, lastIndex) + mapped + value.slice(end);
         const newPos = lastIndex + 1;
@@ -216,7 +216,7 @@ function applyPalatalHook() {
 
   if (start > 0) {
     const prevChar = value[start - 1];
-    const mapped = palatalMap[prevChar];
+    const mapped = getPalatalizedChar(prevChar);
     if (mapped) {
       textarea.value = value.slice(0, start - 1) + mapped + value.slice(end);
       const newPos = start;
@@ -229,6 +229,24 @@ function applyPalatalHook() {
   insertAtCursor('◌̡');
 }
 
+function getPalatalizedChar(char) {
+  if (!char) {
+    return null;
+  }
+
+  const lower = char.toLowerCase();
+  const mapped = palatalMap[lower];
+  if (!mapped) {
+    return null;
+  }
+
+  if (char === lower) {
+    return mapped;
+  }
+
+  return mapped.toUpperCase();
+}
+
 textarea.addEventListener('keydown', (event) => {
   if (event.defaultPrevented) {
     return;
@@ -238,7 +256,8 @@ textarea.addEventListener('keydown', (event) => {
     const replacement = altMap[event.key.toLowerCase()];
     if (replacement) {
       event.preventDefault();
-      insertAtCursor(replacement);
+      const output = event.shiftKey ? replacement.toUpperCase() : replacement;
+      insertAtCursor(output);
     }
     return;
   }
