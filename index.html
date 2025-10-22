@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Romanish Keyboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="app__header">
+      <h1>Romanish Keyboard</h1>
+      <p>Type using the fictional Romanish keyboard layout inspired by German QWERTZ.</p>
+    </header>
+    <section class="app__editor">
+      <label class="app__label" for="romanish-text">Romanish text</label>
+      <textarea id="romanish-text" class="app__textarea" rows="8" placeholder="Start typing in Romanish..."></textarea>
+    </section>
+    <section class="keyboard" aria-label="Romanish on-screen keyboard">
+      <div class="keyboard__row" data-row="numbers"></div>
+      <div class="keyboard__row" data-row="top"></div>
+      <div class="keyboard__row" data-row="home"></div>
+      <div class="keyboard__row" data-row="bottom"></div>
+      <div class="keyboard__row" data-row="controls"></div>
+    </section>
+    <footer class="app__footer">
+      <p>Tips: use Alt+C for <span class="glyph">ç</span> and Alt+A for <span class="glyph">ă</span>. The palatal hook key (<span class="glyph">◌̡</span>) modifies the previous consonant when possible.</p>
+    </footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
