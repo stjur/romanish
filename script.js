@@ -26,6 +26,15 @@ const altMap = {
   a: 'ă'
 };
 
+const physicalKeyMap = {
+  'ß': 'ȷ',
+  'ẞ': 'ȷ',
+  'ö': 'ʃ',
+  'Ö': 'ʃ',
+  'ä': 'ꙟ',
+  'Ä': 'ꙟ'
+};
+
 const keyboardLayout = {
   numbers: [
     { label: '^', value: '^' },
@@ -221,12 +230,33 @@ function applyPalatalHook() {
 }
 
 textarea.addEventListener('keydown', (event) => {
+  if (event.defaultPrevented) {
+    return;
+  }
+
   if (event.altKey && !event.ctrlKey && !event.metaKey) {
     const replacement = altMap[event.key.toLowerCase()];
     if (replacement) {
       event.preventDefault();
       insertAtCursor(replacement);
     }
+    return;
+  }
+
+  if (event.ctrlKey || event.metaKey || event.altKey) {
+    return;
+  }
+
+  if (event.key === 'ü' || event.key === 'Ü') {
+    event.preventDefault();
+    applyPalatalHook();
+    return;
+  }
+
+  const mapped = physicalKeyMap[event.key];
+  if (mapped) {
+    event.preventDefault();
+    insertAtCursor(mapped);
   }
 });
 

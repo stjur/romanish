@@ -14,5 +14,6 @@ An on-screen keyboard for the fictional Romanish language, inspired by the Germa
   - <kbd>Alt</kbd> + <kbd>C</kbd> inserts `ç`
   - <kbd>Alt</kbd> + <kbd>A</kbd> inserts `ă`
 - Interactive on-screen keyboard with backspace, enter, space, and clear controls.
+- Physical keyboard support mapping `ß`, `ö`, and `ä` to their Romanish counterparts and using `ü` for the palatal hook action.
 
 Open `index.html` in a browser to start typing in Romanish.
